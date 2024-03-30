@@ -20,10 +20,9 @@ use App\Http\Controllers\FaixaController;
 Route::apiResources([
     'album' => AlbumController::class,
     'faixa' => FaixaController::class,
+    'register' => Auth\RegisteredUserController::class,
+    'login' => Auth\AuthenticatedSessionController::class,
 ]);
-
-Route::post('/register', [App\Http\Controllers\Auth\RegisteredUserController::class, 'store']);
-
 
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
