@@ -28,7 +28,7 @@ class AlbumController extends Controller
      */
     public function show(string $id)
     {
-        return Album::findOrFail($id);
+        return Album::findOrfail($id);
     }
 
     /**
@@ -36,7 +36,11 @@ class AlbumController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $album = Album::findOrfail($id);
+
+        $album->update($request->all());
+
+        return $album;
     }
 
     /**
@@ -44,6 +48,6 @@ class AlbumController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        return Album::destroy($id);
     }
 }
