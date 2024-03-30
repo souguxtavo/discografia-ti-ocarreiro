@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('nome');
             $table->time('duracao');
-            $table->integer('album_id')->unsigned();
-            $table->foreign('album_id')->references('id')->on('albuns');
+            $table->Biginteger('album_id')->unsigned();
+            $table->foreign('album_id')->references('id')->on('albums');
             $table->timestamps();
         });
     }
