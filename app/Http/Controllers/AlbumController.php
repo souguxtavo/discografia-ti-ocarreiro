@@ -20,7 +20,9 @@ class AlbumController extends Controller
      */
     public function store(Request $request)
     {
-        return Album::create($request->all());
+        $album = Album::create($request->all());
+
+        return response()->json(['message' => 'Album criado com sucesso!', 'album' => $album], 201);
     }
 
     /**
@@ -28,7 +30,13 @@ class AlbumController extends Controller
      */
     public function show(string $id)
     {
-        return Album::findOrfail($id);
+        $album = Album::find($id);
+
+        if ($album) {
+            return $album;
+        } else {
+            return response()->json(['message' => 'Album não encontrado!'], 404);
+        }
     }
 
     /**
@@ -36,11 +44,15 @@ class AlbumController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $album = Album::findOrfail($id);
+        $album = Album::find($id);
 
-        $album->update($request->all());
+        if ($album) {
+            $album->update($request->all());
 
-        return $album;
+            return response()->json(['message' => 'Album atualizado com sucesso!', 'album' => $album], 200);
+        } else {
+            return response()->json(['message' => 'Album não encontrado!'], 404);
+        }
     }
 
     /**
@@ -48,6 +60,14 @@ class AlbumController extends Controller
      */
     public function destroy(string $id)
     {
-        return Album::destroy($id);
+        $album = Album::find($id);
+
+        if ($album) {
+            $album->delete();
+
+            return response()->json(['message' => 'Album deletado com sucesso!'], 200);
+        } else {
+            return response()->json(['message' => 'Album não encontrado!'], 404);
+        }
     }
 }

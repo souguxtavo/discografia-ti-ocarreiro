@@ -20,7 +20,9 @@ class FaixaController extends Controller
      */
     public function store(Request $request)
     {
-        return Faixa::create($request->all());
+        $faixa = Faixa::create($request->all());
+
+        return response()->json(['message' => 'Faixa criada com sucesso!', 'faixa' => $faixa], 201);
     }
 
     /**
@@ -28,7 +30,13 @@ class FaixaController extends Controller
      */
     public function show(string $id)
     {
-        return Faixa::findOrfail($id);
+        $faixa = Faixa::find($id);
+
+        if ($faixa) {
+            return $faixa;
+        } else {
+            return response()->json(['message' => 'Faixa não encontrada!'], 404);
+        }
     }
 
     /**
@@ -36,11 +44,15 @@ class FaixaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $faixa = Faixa::findOrfail($id);
+        $faixa = Faixa::find($id);
 
-        $faixa->update($request->all());
+        if ($faixa) {
+            $faixa->update($request->all());
 
-        return $faixa;
+            return response()->json(['message' => 'Faixa atualizada com sucesso!', 'faixa' => $faixa], 200);
+        } else {
+            return response()->json(['message' => 'Faixa não encontrada!'], 404);
+        }
     }
 
     /**
@@ -48,6 +60,14 @@ class FaixaController extends Controller
      */
     public function destroy(string $id)
     {
-        return Faixa::destroy($id);
+        $faixa = Faixa::find($id);
+
+        if ($faixa) {
+            $faixa->delete();
+
+            return response()->json(['message' => 'Faixa deletada com sucesso!'], 200);
+        } else {
+            return response()->json(['message' => 'Faixa não encontrada!'], 404);
+        }
     }
 }
