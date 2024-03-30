@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Faixa extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['nome', 'duracao', 'album_id'];
 }
