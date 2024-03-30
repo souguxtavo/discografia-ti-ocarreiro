@@ -20,12 +20,7 @@ class AlbumController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'nome' => 'required',
-            'ano' => 'required',
-        ]);
-    
-        return Album::create($validatedData);
+        return Album::create($request->all());
     }
 
     /**
@@ -33,7 +28,7 @@ class AlbumController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return Album::findOrFail($id);
     }
 
     /**

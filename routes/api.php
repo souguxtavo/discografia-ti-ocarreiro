@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AlbumController;
 
 Route::get('/album', [AlbumController::class, 'index']);
+Route::get('/album{id}', [AlbumController::class, 'show']);
 Route::post('/album', [AlbumController::class, 'store']);
 
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
