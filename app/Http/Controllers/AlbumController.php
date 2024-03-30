@@ -19,7 +19,7 @@ class Album extends Controller
      */
     public function store(Request $request)
     {
-        return Testamento::create($request->all());
+        return Album::create($request->all());
     }
 
     /**
