@@ -1,62 +1,34 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import ConsultaAlbums from './pages/consultaalbums';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
+import logotipo from './assets/images/logotipo-tiao-carreiro-base-cinza.png';
 
-function App() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+function HomePage(){
+    const [state, setState] = useState(''); // ou qualquer outro valor inicial
+    return(
+        <div class="position-absolute top-50 start-50 translate-middle">
+            <h2>Tião Carreiro e Pardinho</h2>
+            <img src={logotipo} alt="Logo" />
+            <div>
+                <Link to="/consultaalbums">
+                    <button type="button" class="btn btn-primary btn-lg">Ver Álbuns</button>
+                </Link>
+            </div>
+        </div>
+    )
+}
 
-  const handleRegister = async () => {
-    try {
-      const response = await fetch('http://localhost:8000/api/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          password,
-          password_confirmation: password,
-        }),
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        console.log('Usuário cadastrado com sucesso:', data);
-      } else {
-        const errorData = await response.json();
-        console.error('Erro ao cadastrar usuário:', errorData);
-      }
-    } catch (error) {
-      console.error('Erro ao cadastrar usuário:', error);
-    }
-  };
-
-  return (
-    <div>
-      <h2>Cadastro</h2>
-      <input
-        type="text"
-        placeholder="Nome"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-      <input
-        type="email"
-        placeholder="E-mail"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Senha"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button onClick={handleRegister}>Cadastrar</button>
-    </div>
-  );
+function App(){
+    return(
+        <Router>
+            <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/consultaalbums" element={<ConsultaAlbums />} />
+            </Routes>
+        </Router>
+    )
 }
 
 export default App;
