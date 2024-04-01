@@ -1,49 +1,47 @@
 import React, { useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
-function CadastroAlbums() {
-  const [form, setForm] = useState({ nome: '', ano: '' });
+const CadastroAlbuns = () => {
+  const [nome, setNome] = useState('');
+  const [ano, setAno] = useState('');
 
-  const handleChange = (e) => {
-    setForm({
-      ...form,
-      [e.target.id]: e.target.value,
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    fetch('http://localhost:8000/api/album', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        nome: nome,
+        ano: ano,
+      }),
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
     });
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    try {
-      const response = await fetch('http://127.0.0.1:8000/api/album', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-        },
-        body: JSON.stringify(form),
-      });
-
-      const data = await response.json();
-      console.log('Success:', data);
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  };
-
   return (
-    <div className="container">
+    <div>
+      <h2>Cadastrar Álbuns</h2>
       <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label htmlFor="nome" className="form-label">Nome do Álbum</label>
-          <input type="text" className="form-control" id="nome" value={form.nome} onChange={handleChange} />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="ano" className="form-label">Ano</label>
-          <input type="number" className="form-control" id="ano" value={form.ano} onChange={handleChange} />
-        </div>
-        <button type="submit" className="btn btn-primary">Cadastrar Álbum</button>
+        <label>
+          Nome:
+          <input type="text" value={nome} onChange={e => setNome(e.target.value)} />
+        </label>
+        <label>
+          Ano:
+          <input type="number" value={ano} onChange={e => setAno(e.target.value)} />
+        </label>
+        <button type="submit">Cadastrar</button>
       </form>
     </div>
-  );
+  )
 }
+
+export default CadastroAlbuns;

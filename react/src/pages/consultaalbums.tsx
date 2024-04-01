@@ -1,47 +1,41 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import logotipo from '../assets/images/logotipo-tiao-carreiro-base-cinza.png';
+import logo from '../assets/images/logotipo-tiao-carreiro-base-cinza.png';
+import 'bootstrap';
 
-function ConsultaAlbums() {
-  const [albums, setAlbums] = useState([]);
+const ConsultaAlbums = () => {
+  const [albuns, setAlbuns] = useState([]);
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/album')
+    fetch('http://localhost:8000/api/album')
       .then(response => response.json())
-      .then(data => setAlbums(data));
+      .then(data => setAlbuns(data));
   }, []);
 
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col">
-          <div>
-            <h2 className="mr-3">Álbuns</h2>
-            <img src={logotipo} alt="Logo" style={{ maxWidth: '100px', maxHeight: '100px' }} />
-          </div>
-          <Link to="/cadastroalbuns">
-            <button type="button" className="btn btn-primary mt-3">Cadastrar Álbum</button>
-          </Link>
-          <div>
-            <table className="table mt-3"> 
-              <thead>
-                <tr>
-                  <th>Nome</th>
-                  <th>Ano</th>
-                </tr>
-              </thead>
-              <tbody>
-                {albums.map(album => (
-                  <tr key={album.id}>
-                    <td>{album.nome}</td>
-                    <td>{album.ano}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
+    <div className="App">
+      <div className="container mt-5">
+        <h1 className="mb-4">Álbuns</h1>
+        <img src={logo} alt="Logotipo Tião Carreiro" />
+        <table className="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Nome</th>
+              <th scope="col">Ano</th>
+            </tr>
+          </thead>
+          <tbody>
+            {albuns.map(album => (
+              <tr key={album.id}>
+                <td>{album.nome}</td>
+                <td>{album.ano}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <Link to="/pages/cadastroalbuns">
+          <button className="btn btn-primary mb-3">Cadastrar Novo Álbum</button>
+        </Link>
       </div>
     </div>
   );
