@@ -8,7 +8,7 @@ const CadastroAlbuns = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    axios.post('http://localhost:8000/api/album', { // Use axios.post para enviar a solicitação POST
+    axios.post('http://localhost:8000/api/album', {
       nome: nome,
       ano: ano,
     })

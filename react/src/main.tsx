@@ -2,7 +2,6 @@ import './index.css';
 import 'bootstrap';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-// Importe o componente Login corretamente
 import Login from './pages/login';
 import ConsultaAlbums from './pages/consultaalbums';
 import CadastroAlbuns from './pages/cadastroalbuns';

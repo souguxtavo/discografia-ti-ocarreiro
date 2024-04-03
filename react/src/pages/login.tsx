@@ -1,13 +1,11 @@
-// Login.tsx
-
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -18,7 +16,7 @@ const Login = () => {
       });
       console.log('Login Successful:', response.data);
       // Redirecionar para a página após o login
-      history.push('/dashboard');
+      navigate('/dashboard');
     } catch (error) {
       console.error('Login Error:', error);
     }

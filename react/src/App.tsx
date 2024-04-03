@@ -3,6 +3,8 @@ import logo from './assets/images/logotipo-tiao-carreiro-base-cinza.png'; // Imp
 import { Link } from 'react-router-dom'; // Importe o componente Link
 
 const App = () => {
+  console.log('App component is rendering');
+  
   return (
     <div className="App">
       <div className="container">
@@ -10,7 +12,7 @@ const App = () => {
         <img src={logo} alt="Logotipo Tião Carreiro" />
       </div>
       <div>
-      <Link to="/pages/login">
+        <Link to="/pages/login">
           <button>Ir para Consulta de Álbuns</button>
         </Link>
       </div>
