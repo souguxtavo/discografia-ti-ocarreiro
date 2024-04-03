@@ -47,12 +47,7 @@
         </section>
         <section>
             <h2>Licença</h2>
-            <p>Este projeto está licenciado sob a Licença MIT. Consulte o arquivo <a href="LICENSE">LICENSE</a> para obter mais detalhes.</p>
+            <p>Este projeto está para livre acesso e modificação</p>
         </section>
-    </main>
-    <footer>
-        <p>&copy; 2024 Supliu - Todos os direitos reservados.</p>
-    </footer>
-</body>
 </html>
 ```
