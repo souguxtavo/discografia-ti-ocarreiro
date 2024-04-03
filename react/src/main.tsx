@@ -1,22 +1,24 @@
-import React from 'react';
-import { createRoot } from 'react-dom/client';
 import './index.css';
 import 'bootstrap';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Importe Routes
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-// Páginas
+// Importe o componente Login corretamente
+import Login from './pages/login';
 import ConsultaAlbums from './pages/consultaalbums';
 import CadastroAlbuns from './pages/cadastroalbuns';
 import App from './App';
 
-createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
+const AppRouter = () => {
+  return (
     <Router>
-      <Routes> {/* Envolve as rotas em um componente Routes */}
+      <Routes>
         <Route path="/" element={<App />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/pages/consultaalbums" element={<ConsultaAlbums />} />
         <Route path="/pages/cadastroalbuns" element={<CadastroAlbuns />} />
       </Routes>
     </Router>
-  </React.StrictMode>
-);
+  );
+};
+
+export default AppRouter;

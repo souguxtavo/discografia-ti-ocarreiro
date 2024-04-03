@@ -10,7 +10,7 @@ const App = () => {
         <img src={logo} alt="Logotipo Tião Carreiro" />
       </div>
       <div>
-      <Link to="/pages/consultaalbums">
+      <Link to="/pages/login">
           <button>Ir para Consulta de Álbuns</button>
         </Link>
       </div>

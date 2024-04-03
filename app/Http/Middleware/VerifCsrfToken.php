@@ -15,12 +15,4 @@ class VerifyCsrfToken extends Middleware
         'api/album',
         'api/faixa',
     ];
-
-    public function __construct()
-    {
-        parent::__construct();
-        
-        $this->except[] = 'api/album';
-        $this->except[] = 'api/faixa';
-    }
 }
