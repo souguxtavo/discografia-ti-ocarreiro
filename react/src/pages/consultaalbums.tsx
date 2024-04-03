@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios'; // Importe o Axios
 import logo from '../assets/images/logotipo-tiao-carreiro-base-cinza.png';
 import 'bootstrap';
 
@@ -7,9 +8,9 @@ const ConsultaAlbums = () => {
   const [albuns, setAlbuns] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/album')
-      .then(response => response.json())
-      .then(data => setAlbuns(data));
+    axios.get('http://localhost:8000/api/album') // Use axios.get para buscar os álbuns
+      .then(response => setAlbuns(response.data))
+      .catch(error => console.error('Error:', error));
   }, []);
 
   return (

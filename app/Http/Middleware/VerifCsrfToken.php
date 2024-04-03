@@ -12,6 +12,15 @@ class VerifyCsrfToken extends Middleware
      * @var array<int, string>
      */
     protected $except = [
-        //
+        'api/album',
+        'api/faixa',
     ];
+
+    public function __construct()
+    {
+        parent::__construct();
+        
+        $this->except[] = 'api/album';
+        $this->except[] = 'api/faixa';
+    }
 }
