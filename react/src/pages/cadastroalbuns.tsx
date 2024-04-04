@@ -1,23 +1,33 @@
 import React, { useState } from 'react';
-import axios from 'axios'; // Importe o Axios
 
 const CadastroAlbuns = () => {
   const [nome, setNome] = useState('');
   const [ano, setAno] = useState('');
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  async function enviarDados(){
+    try{
+      const data = {nome: nome, ano: ano};
+      const response = await fetch('http://localhost:8000/api/album', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+        .then(response => {
+          console.log(response);
+          return response.json();
+        })
+        .then(data => console.log(data))
+        .catch(error => console.error('Erro:', error));
+    } catch(error){
+        console.error('Error', error)
+    }
+  }
+  const handleSubmit = (event: { preventDefault: () => void; }) => {
     event.preventDefault();
 
-    axios.post('http://localhost:8000/api/album', {
-      nome: nome,
-      ano: ano,
-    })
-    .then(response => {
-      console.log('Success:', response.data);
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
+    enviarDados();
   };
 
   return (
