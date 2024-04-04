@@ -24,6 +24,8 @@ Route::apiResources([
     'login' => Auth\AuthenticatedSessionController::class,
 ]);
 
+Route::get('/faixas/album/{nome}', [FaixaController::class, 'getFaixasByAlbumNome']);
+
 
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();

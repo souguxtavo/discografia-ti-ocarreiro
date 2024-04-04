@@ -15,6 +15,18 @@ class FaixaController extends Controller
         return Faixa::all();
     }
 
+    public function getFaixasByAlbumNome(string $nome)
+    {
+        $album = Album::where('nome', $nome)->first();
+
+        if ($album) {
+            $faixas = Faixa::where('album_id', $album->id)->get();
+            return $faixas;
+        } else {
+            return response()->json(['message' => 'Álbum não encontrado!'], 404);
+        }
+    }
+
     /**
      * Store a newly created resource in storage.
      */

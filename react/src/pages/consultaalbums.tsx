@@ -5,6 +5,7 @@ import 'bootstrap';
 
 const ConsultaAlbums = () => {
   const [albuns, setAlbuns] = useState([]);
+  const [search, setSearch] = useState(''); // Adicionado estado para a pesquisa
 
   useEffect(() => {
     fetch('http://localhost:8000/api/album')
@@ -19,7 +20,7 @@ const ConsultaAlbums = () => {
       });
       if (response.status === 200) {
         // Remove the album with the specified ID from the list
-        const updatedAlbums = albuns.filter(album => album.id !== id);
+        const updatedAlbums = albuns.filter((album) => album.id !== id);
         setAlbuns(updatedAlbums);
       }
     } catch (error) {
@@ -27,32 +28,30 @@ const ConsultaAlbums = () => {
     }
   };
 
+  // Filtra os álbuns com base na pesquisa
+  const filteredAlbums = albuns.filter(album => album.nome.toLowerCase().includes(search.toLowerCase()));
+
   return (
     <div className="App">
       <div className="container mt-5">
         <h1 className="mb-4">Álbuns</h1>
         <img src={logo} alt="Logotipo Tião Carreiro" />
+        <input type="text" value={search} onChange={e => setSearch(e.target.value)} placeholder="Pesquisar álbuns..." /> {/* Campo de pesquisa */}
         <table className="table table-striped">
           <thead>
             <tr>
+              <th scope="col">ID</th>
               <th scope="col">Nome</th>
               <th scope="col">Ano</th>
-              <th scope="col">Visualizar Faixas</th> {/* New column for view tracks button */}
               <th scope="col">Ações</th>
             </tr>
           </thead>
           <tbody>
-            {albuns.map(album => (
+            {filteredAlbums.map((album) => ( // Usa os álbuns filtrados
               <tr key={album.id}>
+                <td>{album.id}</td>
                 <td>{album.nome}</td>
                 <td>{album.ano}</td>
-                <td>
-                  <Link to={`/pages/faixas/${album.id}`}>
-                    <button className="btn btn-primary">
-                      Visualizar
-                    </button>
-                  </Link>
-                </td>
                 <td>
                   <button
                     className="btn btn-danger"
@@ -68,9 +67,15 @@ const ConsultaAlbums = () => {
         <Link to="/pages/cadastroalbuns">
           <button className="btn btn-primary mb-3">Cadastrar Novo Álbum</button>
         </Link>
+        <Link to="/pages/cadastrodefaixas">
+          <button className="btn btn-primary mb-3">Cadastrar Faixas</button>
+        </Link>
+        <Link to="/pages/faixas">
+          <button className="btn btn-primary mb-3">Consultar Faixas</button>
+        </Link>
       </div>
     </div>
   );
-}
+};
 
 export default ConsultaAlbums;

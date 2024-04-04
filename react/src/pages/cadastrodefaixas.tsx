@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 
-const CadastroAlbuns = () => {
+const CadastroFaixas = () => {
   const [nome, setNome] = useState('');
-  const [ano, setAno] = useState('');
+  const [duracao, setDuracao] = useState(''); // Adicionado estado para a duração da faixa
+  const [albumId, setAlbumId] = useState(''); // Adicionado estado para o ID do álbum
   const [cadastroSucesso, setCadastroSucesso] = useState(false); // Estado para controlar a exibição da mensagem de sucesso
 
   async function enviarDados() {
     try {
-      const data = { nome: nome, ano: ano };
-      const response = await fetch('http://localhost:8000/api/album', {
+      const data = { nome: nome, duracao: duracao, album_id: albumId }; // Adicionado duracao e albumId ao objeto de dados
+      const response = await fetch('http://localhost:8000/api/faixa', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -40,7 +41,7 @@ const CadastroAlbuns = () => {
 
   return (
     <div>
-      <h2>Cadastrar Álbuns</h2>
+      <h2>Cadastrar Faixas</h2>
       {cadastroSucesso ? (
         <p style={{ color: 'green' }}>Cadastro realizado com sucesso!</p>
       ) : null}
@@ -50,8 +51,12 @@ const CadastroAlbuns = () => {
           <input type="text" value={nome} onChange={(e) => setNome(e.target.value)} />
         </label>
         <label>
-          Ano:
-          <input type="number" value={ano} onChange={(e) => setAno(e.target.value)} />
+          Duração:
+          <input type="time" value={duracao} onChange={(e) => setDuracao(e.target.value)} /> {/* Campo de entrada para a duração da faixa */}
+        </label>
+        <label>
+          ID do Álbum:
+          <input type="text" value={albumId} onChange={(e) => setAlbumId(e.target.value)} /> {/* Campo de entrada para o ID do álbum */}
         </label>
         <button type="submit">Cadastrar</button>
       </form>
@@ -62,4 +67,4 @@ const CadastroAlbuns = () => {
   );
 };
 
-export default CadastroAlbuns;
+export default CadastroFaixas;
