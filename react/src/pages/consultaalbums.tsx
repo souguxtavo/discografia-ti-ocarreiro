@@ -36,7 +36,7 @@ const ConsultaAlbums = () => {
       <div className="container mt-5">
         <h1 className="mb-4">Álbuns</h1>
         <img src={logo} alt="Logotipo Tião Carreiro" />
-        <input type="text" value={search} onChange={e => setSearch(e.target.value)} placeholder="Pesquisar álbuns..." /> {/* Campo de pesquisa */}
+        <p><input type="text" value={search} onChange={e => setSearch(e.target.value)} placeholder="Pesquisar álbuns..." /> {/* Campo de pesquisa */}</p>
         <table className="table table-striped">
           <thead>
             <tr>
