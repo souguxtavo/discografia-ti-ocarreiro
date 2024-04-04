@@ -8,11 +8,11 @@
     <header>
         <h1>Discografia Tião Carreiro e Pardinho</h1>
     </header>
-    <img src="![image](https://github.com/souguxtavo/testesupliudiscografia/assets/104173191/2bd4e369-a737-4d89-a6dd-f171461160f1)">
-    <img src="![image](https://github.com/souguxtavo/testesupliudiscografia/assets/104173191/5585f522-fe93-4144-b7ff-9871493de6c6)">
-    <img src="![image](https://github.com/souguxtavo/testesupliudiscografia/assets/104173191/25570780-dd6f-40b2-9c53-09c721c82b56)">
-    <img src="![image](https://github.com/souguxtavo/testesupliudiscografia/assets/104173191/219f1d72-ab2d-47b4-818c-3942c8ad2d55)">
-    <img src="![image](https://github.com/souguxtavo/testesupliudiscografia/assets/104173191/2e1e1f50-97ba-4cc8-91f2-4bb9417a44ba)">
+    <img src="https://github.com/souguxtavo/testesupliudiscografia/assets/104173191/2bd4e369-a737-4d89-a6dd-f171461160f1">
+    <img src="https://github.com/souguxtavo/testesupliudiscografia/assets/104173191/5585f522-fe93-4144-b7ff-9871493de6c6">
+    <img src="https://github.com/souguxtavo/testesupliudiscografia/assets/104173191/25570780-dd6f-40b2-9c53-09c721c82b56">
+    <img src="https://github.com/souguxtavo/testesupliudiscografia/assets/104173191/219f1d72-ab2d-47b4-818c-3942c8ad2d55">
+    <img src="https://github.com/souguxtavo/testesupliudiscografia/assets/104173191/2e1e1f50-97ba-4cc8-91f2-4bb9417a44ba">
 
     <main>
         <section>
